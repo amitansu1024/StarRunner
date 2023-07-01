@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody), typeof(BoxCollider))]
 public class PlayerMovementHandler : MonoBehaviour
@@ -11,14 +12,15 @@ public class PlayerMovementHandler : MonoBehaviour
     private float _rotationSpeed;
     private Rigidbody _rigidBody;
 
-    void Awake() {
+    private void Awake() {
         _rigidBody = GetComponent<Rigidbody>();
         _movementSpeed = 0.1f;
         _rotationSpeed = 0.6f;
     }
 
+
     void FixedUpdate() {
-        if (_rigidBody.velocity.magnitude < 1.0f) {
+        if (_rigidBody.velocity.magnitude < 10.0f) {
             _rigidBody.velocity += transform.forward * _movementJoystick.Vertical * _movementSpeed;
             _rigidBody.velocity += transform.right * _movementJoystick.Horizontal * _movementSpeed;
         }
