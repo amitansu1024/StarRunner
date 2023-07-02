@@ -15,7 +15,7 @@ public class PlayerMovementHandler : MonoBehaviour
     private void Awake() {
         _rigidBody = GetComponent<Rigidbody>();
         _movementSpeed = 0.1f;
-        _rotationSpeed = 0.6f;
+        _rotationSpeed = 0.7f;
     }
 
 

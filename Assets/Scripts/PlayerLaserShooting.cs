@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerLaserShooting : MonoBehaviour
 {
     [SerializeField] private GameObject _laser;
-    [SerializeField] private float _laserSpeed;
+    [SerializeField]float _laserSpeed;
     [SerializeField] private GameObject _shootButton;
     private Rigidbody _laserRigidbody;
 
@@ -18,7 +18,7 @@ public class PlayerLaserShooting : MonoBehaviour
     }
 
 
-    void Shoot() {
+    internal void Shoot() {
         GameObject projectile = Instantiate(_laser, this.transform.position + new Vector3(0, 0, 1.0f), _laser.transform.rotation);
 
 
