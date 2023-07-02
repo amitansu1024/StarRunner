@@ -1,28 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerLiveHandler : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI _livesText;
     [SerializeField] private int _lives;
-    // Start is called before the first frame update
     void Start()
     {
         _lives = 5;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (_lives == 0) {
-            Debug.Log("gameover");
+            MenuHandler.Instance.GameOver();
         }
     }
 
-    void OnTriggerEnter(Collider collision) {
-        if (collision.gameObject.tag == "Laser") {
-            Debug.Log("Lives lost");
-            _lives--;
+    void OnTriggerEnter(Collider collider) {
+        if (collider.gameObject.tag == "Laser") {
+            _livesText.SetText("Lives : " + --_lives);
         }
     }
 }

@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Rigidbody), typeof(BoxCollider))]
 public class PlayerMovementHandler : MonoBehaviour
 {
     [SerializeField] private FixedJoystick _movementJoystick;
     [SerializeField] private FixedJoystick _rotationJoystick;
+    [SerializeField] private Button _brakesButton;
     private float _movementSpeed;
     private float _rotationSpeed;
     private Rigidbody _rigidBody;
@@ -16,6 +18,7 @@ public class PlayerMovementHandler : MonoBehaviour
         _rigidBody = GetComponent<Rigidbody>();
         _movementSpeed = 0.1f;
         _rotationSpeed = 0.7f;
+        _brakesButton.onClick.AddListener(Brakes);
     }
 
 
@@ -25,8 +28,14 @@ public class PlayerMovementHandler : MonoBehaviour
             _rigidBody.velocity += transform.right * _movementJoystick.Horizontal * _movementSpeed;
         // }
 
+        //brakes
         _rigidBody.AddForce(_rigidBody.velocity * -0.1f);
+
         _rigidBody.transform.eulerAngles += 
             new Vector3(- _rotationJoystick.Vertical * _rotationSpeed, _rotationJoystick.Horizontal * _rotationSpeed, 0);
     } 
+
+    void Brakes() {
+        _rigidBody.AddForce(_rigidBody.velocity * -5.0f);
+    }
 }

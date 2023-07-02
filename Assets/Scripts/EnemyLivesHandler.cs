@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyLivesHandler : MonoBehaviour
 {
     [SerializeField] int _lives;
+    private AudioSource _audio; 
+    [SerializeField] private GameObject _blastPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,11 @@ public class EnemyLivesHandler : MonoBehaviour
             Debug.Log("Enemy Lives lost");
             _lives--;
         }
+    }
+
+    void OnDestroy() {
+        _audio.Play(); 
+        Instantiate(_blastPrefab, transform.position, Quaternion.identity);
     }
 }
 

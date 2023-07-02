@@ -31,6 +31,7 @@ public class EnemyBehaviourHandler : MonoBehaviour
 
         if (Vector3.Distance(_playerShip.transform.position, transform.position) < _awareDistance)  {
             _aware = true;
+            DialogueManager.Instance.WarnPlayerDialogue();
         }
 
         if (_aware) {
@@ -53,7 +54,7 @@ public class EnemyBehaviourHandler : MonoBehaviour
     } 
 
     void Shoot() {
-            GameObject projectile = Instantiate(_laser, transform.position + new Vector3(0.15f, -1.5f, 1.0f), _laser.transform.rotation);
+            GameObject projectile = Instantiate(_laser, transform.position + new Vector3(0.15f, -0.5f, 1.0f), _laser.transform.rotation);
             projectile.transform.LookAt(_playerShip.transform);
             Vector3 direction = _playerShip.transform.position - transform.position;
             projectile.GetComponent<Rigidbody>().velocity = (direction * _laserSpeed);
