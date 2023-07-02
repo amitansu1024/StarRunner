@@ -12,16 +12,18 @@ public class PlayerLaserShooting : MonoBehaviour
 
     private void Awake() {
         _laserSpeed = 50.0f;
-        _laserRigidbody = _laser.GetComponent<Rigidbody>();
 
         _shootButton.GetComponent<Button>().onClick.AddListener(Shoot);
     }
 
 
-    internal void Shoot() {
-        GameObject projectile = Instantiate(_laser, this.transform.position + new Vector3(0, 0, 1.0f), _laser.transform.rotation);
+    void Shoot() {
+        GameObject projectile = Instantiate(_laser, transform.position + new Vector3(-0.3f, 0, 0), _laser.transform.rotation);
+        projectile.transform.rotation = transform.rotation;
+        projectile.GetComponent<Rigidbody>().velocity = (transform.forward * _laserSpeed);
+        Destroy(projectile, 5);
+        
 
 
-        projectile.GetComponent<Rigidbody>().AddRelativeForce(transform.up * _laserSpeed);
     }
 }
