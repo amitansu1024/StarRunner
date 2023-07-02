@@ -6,13 +6,16 @@ public class AsteroidGenerator : MonoBehaviour
 {
     
     [SerializeField] private GameObject[] _asteroids = new GameObject[3];
-    [SerializeField] private int _numberOfAsteroids;
-    private int _field = 200;
+    [SerializeField] private int _numberOfLargeAsteroids;
+    [SerializeField] private int _numberOfSmallAsteroids;
+    private int _spawnRadius = 200;
+    private int _spawnCollisionRadius = 30;
     private GameObject[] _createdAsteroids;
 
     private void Awake() {
-        _numberOfAsteroids = 10;
-        _createdAsteroids = new GameObject[_numberOfAsteroids];
+        _numberOfLargeAsteroids = 10;
+        _numberOfSmallAsteroids = 50;
+        _createdAsteroids = new GameObject[_numberOfLargeAsteroids];
         createAsteroids();
     }
 
@@ -23,24 +26,33 @@ public class AsteroidGenerator : MonoBehaviour
     }
 
     void createAsteroids() {
-        for (int i = 0; i < _numberOfAsteroids; i++) {
-            int separationSize = 200 / _numberOfAsteroids;
-            int x = Random.Range(-_field, _field);
-            int y = Random.Range(-_field + 2 * i * separationSize, -(_field - separationSize) + 2 * i * separationSize);
-            int z = Random.Range(-_field, _field);
+        // large asteroids
 
-            Vector3 position = new Vector3(x, y, z);
-            GeneratorRandomAsteroid(position);
+        for (int i = 0; i < _numberOfLargeAsteroids; i++) {
+
+            Vector3 position = transform.position + Random.insideUnitSphere * _spawnRadius;
+            if (!Physics.CheckSphere(position, _spawnCollisionRadius)) {
+
+                int rand = Random.Range(0, 2);
+                GameObject asteroid = Instantiate(_asteroids[rand], position, Random.rotation);
+                rand = Random.Range(10, 40);
+                asteroid.transform.localScale = new Vector3(rand, rand, rand);
+            }
+        }
+        for (int i = 0; i < _numberOfSmallAsteroids; i++){
+
+
+            Vector3 position = transform.position + Random.insideUnitSphere * _spawnRadius;
+            if (!Physics.CheckSphere(position, _spawnCollisionRadius)) {
+
+                int rand = Random.Range(0, 2);
+                GameObject asteroid = Instantiate(_asteroids[rand], position, Random.rotation);
+                rand = Random.Range(5, 10);
+                asteroid.transform.localScale = new Vector3(rand, rand, rand);
+            }
+
         }
 
     }
 
-    GameObject GeneratorRandomAsteroid(Vector3 position) {
-        int rand = Random.Range(0, 2);
-        GameObject asteroid = Instantiate(_asteroids[rand], position, Quaternion.identity);
-
-        rand = Random.Range(6, 50);
-        asteroid.transform.localScale = new Vector3(rand, rand, rand);
-        return asteroid;
-    }
 }

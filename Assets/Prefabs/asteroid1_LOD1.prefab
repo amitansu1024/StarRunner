@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2691988361115993483}
   - component: {fileID: 2691988361118893487}
   - component: {fileID: 2691988361117894511}
+  - component: {fileID: 3464164192251181944}
   m_Layer: 0
   m_Name: asteroid1_LOD1
   m_TagString: Untagged
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &3464164192251181944
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2691988361115703723}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.93
+  m_Center: {x: 0.04772708, y: -0.03442072, z: 0.04908537}
