@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7681705438986885534}
   - component: {fileID: 4027698343748088017}
+  - component: {fileID: -4842021829549190605}
   m_Layer: 0
   m_Name: Projectiles
-  m_TagString: Untagged
+  m_TagString: Laser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,6 +51,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &-4842021829549190605
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2567012942705622957}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.92, y: 0.39, z: 2.03}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &642515242926578210
 PrefabInstance:
   m_ObjectHideFlags: 0

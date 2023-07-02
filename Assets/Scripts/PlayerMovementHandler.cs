@@ -20,11 +20,12 @@ public class PlayerMovementHandler : MonoBehaviour
 
 
     void FixedUpdate() {
-        if (_rigidBody.velocity.magnitude < 10.0f) {
+        // if (_rigidBody.velocity.magnitude < 10.0f) {
             _rigidBody.velocity += transform.forward * _movementJoystick.Vertical * _movementSpeed;
             _rigidBody.velocity += transform.right * _movementJoystick.Horizontal * _movementSpeed;
-        }
+        // }
 
+        _rigidBody.AddForce(_rigidBody.velocity * -0.1f);
         _rigidBody.transform.eulerAngles += 
             new Vector3(- _rotationJoystick.Vertical * _rotationSpeed, _rotationJoystick.Horizontal * _rotationSpeed, 0);
     } 

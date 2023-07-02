@@ -18,12 +18,9 @@ public class PlayerLaserShooting : MonoBehaviour
 
 
     void Shoot() {
-        GameObject projectile = Instantiate(_laser, transform.position + new Vector3(-0.3f, 0, 0), _laser.transform.rotation);
+        GameObject projectile = Instantiate(_laser, transform.position + new Vector3(-0.3f, 0, 2.0f), _laser.transform.rotation);
         projectile.transform.rotation = transform.rotation;
         projectile.GetComponent<Rigidbody>().velocity = (transform.forward * _laserSpeed);
         Destroy(projectile, 5);
-        
-
-
     }
 }

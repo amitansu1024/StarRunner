@@ -21,8 +21,8 @@ public class EnemyBehaviourHandler : MonoBehaviour
         _playerShip = GameObject.Find("Main Camera");
         _laserSpeed = 5.0f;
         _aware = false;
-        _awareDistance = 30.0f;
-        _minimumDistanceFromPlayerShip = 15.0f;
+        _awareDistance = 40.0f;
+        _minimumDistanceFromPlayerShip = 10.0f;
         _enemySpeed = 3.0f;
     }
     void FixedUpdate() {
@@ -37,9 +37,9 @@ public class EnemyBehaviourHandler : MonoBehaviour
             Chase();
         }
 
-        if (_aware && _timer > 2.0f)
+        if (_aware && Vector3.Distance(_playerShip.transform.position, transform.position) < 50.0f && _timer > 3.0f)
         {
-            // Shoot();
+            Shoot();
             _timer = 0.0f;
         }
 
@@ -53,7 +53,7 @@ public class EnemyBehaviourHandler : MonoBehaviour
     } 
 
     void Shoot() {
-            GameObject projectile = Instantiate(_laser, transform.position + new Vector3(0.15f, -0.5f, 1.0f), _laser.transform.rotation);
+            GameObject projectile = Instantiate(_laser, transform.position + new Vector3(0.15f, -1.5f, 1.0f), _laser.transform.rotation);
             projectile.transform.LookAt(_playerShip.transform);
             Vector3 direction = _playerShip.transform.position - transform.position;
             projectile.GetComponent<Rigidbody>().velocity = (direction * _laserSpeed);

@@ -15,11 +15,6 @@ public class EnemyAIAvoidObstacle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Physics.Raycast(transform.position, transform.forward, out _raycast, 10)) {
-            if (_raycast.collider.gameObject.CompareTag("Asteroid")) {
-                _rigidBody.velocity = transform.right * 5.0f;
-            }
-        }
         
     }
 }
