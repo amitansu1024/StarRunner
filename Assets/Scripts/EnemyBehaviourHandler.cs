@@ -18,6 +18,7 @@ public class EnemyBehaviourHandler : MonoBehaviour
 
     private void Awake() {
         _rigidBody = GetComponent<Rigidbody>();
+        _playerShip = GameObject.Find("Main Camera");
         _laserSpeed = 5.0f;
         _aware = false;
         _awareDistance = 30.0f;
