@@ -13,8 +13,11 @@ public class EnemyBehaviourHandler : MonoBehaviour
     [SerializeField] private float _enemySpeed;
     [SerializeField] private bool _aware;
     private float _timer;
+    private Rigidbody _rigidBody;
+    private RaycastHit _raycast;
 
     private void Awake() {
+        _rigidBody = GetComponent<Rigidbody>();
         _laserSpeed = 5.0f;
         _aware = false;
         _awareDistance = 30.0f;
@@ -35,8 +38,15 @@ public class EnemyBehaviourHandler : MonoBehaviour
 
         if (_aware && _timer > 2.0f)
         {
-            Shoot();
+            // Shoot();
             _timer = 0.0f;
+        }
+
+        if (Physics.Raycast(transform.position, transform.forward, out _raycast, 15)) {
+            if (_raycast.collider.gameObject.CompareTag("Asteroid")) {
+                Debug.Log("Asteroid Detected");
+                _rigidBody.velocity = transform.right * 5.0f;
+            }
         }
 
     } 
@@ -54,10 +64,9 @@ public class EnemyBehaviourHandler : MonoBehaviour
         LootAtYouAnimation();
         if (Vector3.Distance(_playerShip.transform.position, transform.position) > _minimumDistanceFromPlayerShip) {
             NavMeshAgent agent = GetComponent<NavMeshAgent>();
-            // agent.destination = _playerShip.transform.position;
-            // transform.position = Vector3.MoveTowards(transform.position, 
-            //                                         _playerShip.transform.position,
-            //                                         _enemySpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, 
+                                                    _playerShip.transform.position,
+                                                    _enemySpeed * Time.deltaTime);
         } 
         else if (Vector3.Distance(_playerShip.transform.position, transform.position) < _minimumDistanceFromPlayerShip + 2.0f) {
             transform.position = Vector3.MoveTowards(transform.position, 
