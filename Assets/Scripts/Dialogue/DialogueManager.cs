@@ -33,7 +33,16 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(ChangeDialogue());
     }
 
-    internal IEnumerator ChangeDialogue() {
+    internal IEnumerator YouWinDialogue() {
+        _dialogueUI.SetActive(true);
+
+        _dialogueText.SetText("You Win!!!!");
+        yield return new WaitForSecondsRealtime(2.5f);
+
+        _dialogueUI.SetActive(false);
+    }
+
+    IEnumerator ChangeDialogue() {
 
         _dialogueUI.SetActive(true);
 

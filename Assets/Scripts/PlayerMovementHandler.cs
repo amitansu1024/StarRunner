@@ -28,6 +28,8 @@ public class PlayerMovementHandler : MonoBehaviour
 
     void FixedUpdate() {
         PlayerMovements();
+        CameraMovements();
+        Brakes();
 
 
         //drag force
@@ -35,11 +37,12 @@ public class PlayerMovementHandler : MonoBehaviour
     } 
 
     void Update() {
-        CameraMovements();
     }
 
     void Brakes() {
-        _rigidBody.AddForce(_rigidBody.velocity * -5.0f);
+        float brakesValue = Input.GetAxis("Fire1");
+        if (brakesValue > 0)
+            _rigidBody.AddForce(_rigidBody.velocity * -5.0f);
     }
 
     void PlayerMovements() {
