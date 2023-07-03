@@ -10,12 +10,15 @@ public class EnemyLivesHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _audio = this.gameObject.GetComponent<AudioSource>();
         _lives = 3;
     }
 
     void FixedUpdate() {
         if (_lives == 0) {
+            GameObject blast = Instantiate(_blastPrefab, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
+            Destroy(blast, 2);
         }
     }
 
@@ -28,7 +31,6 @@ public class EnemyLivesHandler : MonoBehaviour
 
     void OnDestroy() {
         _audio.Play(); 
-        Instantiate(_blastPrefab, transform.position, Quaternion.identity);
     }
 }
 

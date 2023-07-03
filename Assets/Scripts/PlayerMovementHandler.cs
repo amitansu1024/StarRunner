@@ -12,30 +12,55 @@ public class PlayerMovementHandler : MonoBehaviour
     [SerializeField] private Button _brakesButton;
     private float _movementSpeed;
     private float _rotationSpeed;
+    private float _yaw;
+    private float _pitch;
     private Rigidbody _rigidBody;
 
     private void Awake() {
+        _yaw = 0.0f;
+        _pitch = 0.0f;
         _rigidBody = GetComponent<Rigidbody>();
         _movementSpeed = 0.1f;
-        _rotationSpeed = 0.7f;
+        _rotationSpeed = 3.0f;
         _brakesButton.onClick.AddListener(Brakes);
     }
 
 
     void FixedUpdate() {
-        // if (_rigidBody.velocity.magnitude < 10.0f) {
-            _rigidBody.velocity += transform.forward * _movementJoystick.Vertical * _movementSpeed;
-            _rigidBody.velocity += transform.right * _movementJoystick.Horizontal * _movementSpeed;
-        // }
+        PlayerMovements();
 
-        //brakes
+
+        //drag force
         _rigidBody.AddForce(_rigidBody.velocity * -0.1f);
-
-        _rigidBody.transform.eulerAngles += 
-            new Vector3(- _rotationJoystick.Vertical * _rotationSpeed, _rotationJoystick.Horizontal * _rotationSpeed, 0);
     } 
+
+    void Update() {
+        CameraMovements();
+    }
 
     void Brakes() {
         _rigidBody.AddForce(_rigidBody.velocity * -5.0f);
+    }
+
+    void PlayerMovements() {
+        float horizontalValue = Input.GetAxis("Horizontal");
+        float verticalValue = Input.GetAxis("Vertical");
+
+        if (horizontalValue > 0) // move right
+            _rigidBody.velocity += transform.right * _movementSpeed;
+        if (horizontalValue < 0)  // move left
+            _rigidBody.velocity += -transform.right * _movementSpeed;
+        if (verticalValue > 0) // move forward
+            _rigidBody.velocity += transform.forward * _movementSpeed;
+        if (verticalValue < 0)  // move back
+            _rigidBody.velocity += -transform.forward * _movementSpeed;
+    }
+
+
+    void CameraMovements() {
+        _yaw  += _rotationSpeed * Input.GetAxis("Mouse X");
+        _pitch  -= _rotationSpeed * Input.GetAxis("Mouse Y");
+
+        transform.localEulerAngles = new Vector3(_pitch, _yaw, 0.0f);
     }
 }

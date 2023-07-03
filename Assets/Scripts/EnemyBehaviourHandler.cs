@@ -26,51 +26,28 @@ public class EnemyBehaviourHandler : MonoBehaviour
         _enemySpeed = 3.0f;
     }
     void FixedUpdate() {
-        // when the player ship is near be aware
-        _timer += Time.deltaTime;
 
+        // become aware if the player is at a certain distance
         if (Vector3.Distance(_playerShip.transform.position, transform.position) < _awareDistance)  {
             _aware = true;
             DialogueManager.Instance.WarnPlayerDialogue();
         }
 
+        // move away from player if spotted
         if (_aware) {
-            Chase();
+            MoveAway();
         }
 
-        if (_aware && Vector3.Distance(_playerShip.transform.position, transform.position) < 50.0f && _timer > 3.0f)
-        {
-            Shoot();
-            _timer = 0.0f;
-        }
-
-        if (Physics.Raycast(transform.position, transform.forward, out _raycast, 15)) {
+        if (Physics.Raycast(transform.position, -transform.forward, out _raycast, 15)) {
             if (_raycast.collider.gameObject.CompareTag("Asteroid")) {
-                Debug.Log("Asteroid Detected");
                 _rigidBody.velocity = transform.right * 5.0f;
             }
         }
 
     } 
-
-    void Shoot() {
-            GameObject projectile = Instantiate(_laser, transform.position + new Vector3(0.15f, -0.5f, 1.0f), _laser.transform.rotation);
-            projectile.transform.LookAt(_playerShip.transform);
-            Vector3 direction = _playerShip.transform.position - transform.position;
-            projectile.GetComponent<Rigidbody>().velocity = (direction * _laserSpeed);
-            Destroy(projectile, 5);
-            _timer = 0.0f;
-    }
-
-    void Chase() {
+    void MoveAway() {
         LootAtYouAnimation();
-        if (Vector3.Distance(_playerShip.transform.position, transform.position) > _minimumDistanceFromPlayerShip) {
-            NavMeshAgent agent = GetComponent<NavMeshAgent>();
-            transform.position = Vector3.MoveTowards(transform.position, 
-                                                    _playerShip.transform.position,
-                                                    _enemySpeed * Time.deltaTime);
-        } 
-        else if (Vector3.Distance(_playerShip.transform.position, transform.position) < _minimumDistanceFromPlayerShip + 2.0f) {
+        if (Vector3.Distance(_playerShip.transform.position, transform.position) < _minimumDistanceFromPlayerShip + 2.0f) {
             transform.position = Vector3.MoveTowards(transform.position, 
                                                     _playerShip.transform.position,
                                                     -_enemySpeed * Time.deltaTime);

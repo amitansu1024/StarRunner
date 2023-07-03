@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3578887872530075337}
   - component: {fileID: 3578887872528944137}
   - component: {fileID: 2486625731811545907}
-  - component: {fileID: 2671574824539108417}
+  - component: {fileID: 6724442556739037346}
   - component: {fileID: 4113427113431176548}
   m_Layer: 0
   m_Name: asteroid2_LOD1
@@ -99,7 +99,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.58
   m_Center: {x: 0.15, y: 0.11, z: -0.0514542}
---- !u!114 &2671574824539108417
+--- !u!114 &6724442556739037346
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
