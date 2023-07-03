@@ -41,8 +41,6 @@ There is a intial dialogue which will appear in player's screen at the start of 
 A dialogue appears when the other ship gets alerted about player's presence. 
 ### Collected Dialogue 
 When the other ship is collected a dialogue will appear notifying it to the player.
-### Too far Dialogue 
-When the player strays too far away from the centre.
 
 ## UI
 There are UI elements all over game, from Lives and score UI to Main Menu, Tutorial, Pause and etc. 

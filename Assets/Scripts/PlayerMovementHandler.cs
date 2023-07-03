@@ -36,9 +36,6 @@ public class PlayerMovementHandler : MonoBehaviour
         _rigidBody.AddForce(_rigidBody.velocity * -0.1f);
     } 
 
-    void Update() {
-    }
-
     void Brakes() {
         float brakesValue = Input.GetAxis("Fire1");
         if (brakesValue > 0)

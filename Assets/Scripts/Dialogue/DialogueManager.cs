@@ -37,6 +37,10 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(WinDialogue());
     }
 
+    internal void CollectedDialogue() {
+        StartCoroutine(Collected());
+    }
+
     IEnumerator WinDialogue() {
         _dialogueUI.SetActive(true);
 
@@ -53,6 +57,15 @@ public class DialogueManager : MonoBehaviour
 
         _dialogueText.SetText("You have been spotted...quickly neutralize the enemy before they get to you.");
         yield return new WaitForSecondsRealtime(2.5f);
+
+        _dialogueUI.SetActive(false);
+    }
+
+    internal IEnumerator Collected() {
+        _dialogueUI.SetActive(true);
+
+        _dialogueText.SetText("SHIP Collected");
+        yield return new WaitForSecondsRealtime(1.0f);
 
         _dialogueUI.SetActive(false);
     }

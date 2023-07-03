@@ -23,7 +23,7 @@ public class ScoreSpaceShipAIHandler : MonoBehaviour
         _aware = false;
         _awareDistance = 40.0f;
         _minimumDistanceFromPlayerShip = 80.0f;
-        shipSpeed = 5.0f;
+        shipSpeed = 4.0f;
     }
     void FixedUpdate() {
 
@@ -48,7 +48,11 @@ public class ScoreSpaceShipAIHandler : MonoBehaviour
     } 
     void MoveAway() {
         LootAtYouAnimation();
-        if (Vector3.Distance(_playerShip.transform.position, transform.position) < _minimumDistanceFromPlayerShip + 2.0f) {
+        if (Vector3.Distance(_playerShip.transform.position, transform.position) > _minimumDistanceFromPlayerShip + 30.0f)
+            transform.position = Vector3.MoveTowards(transform.position, 
+                                                    _playerShip.transform.position,
+                                                    -shipSpeed * Time.deltaTime);
+        else if (Vector3.Distance(_playerShip.transform.position, transform.position) < _minimumDistanceFromPlayerShip) {
             transform.position = Vector3.MoveTowards(transform.position, 
                                                     _playerShip.transform.position,
                                                     -shipSpeed * Time.deltaTime);

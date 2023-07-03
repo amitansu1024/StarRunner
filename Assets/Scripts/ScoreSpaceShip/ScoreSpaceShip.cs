@@ -13,6 +13,7 @@ public class ScoreSpaceShip : MonoBehaviour
 
     void OnTriggerEnter(Collider collider) {
         if (collider.gameObject.tag == "MainCamera") {
+            DialogueManager.Instance.CollectedDialogue();
             Destroy(this.gameObject);
         }
     }
