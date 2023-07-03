@@ -30,19 +30,24 @@ public class DialogueManager : MonoBehaviour
 
 
     internal void WarnPlayerDialogue() {
-        StartCoroutine(ChangeDialogue());
+        StartCoroutine(AwareDialogue());
     }
 
-    internal IEnumerator YouWinDialogue() {
+    internal void YouWinDialogue() {
+        StartCoroutine(WinDialogue());
+    }
+
+    IEnumerator WinDialogue() {
         _dialogueUI.SetActive(true);
 
         _dialogueText.SetText("You Win!!!!");
         yield return new WaitForSecondsRealtime(2.5f);
 
         _dialogueUI.SetActive(false);
+
     }
 
-    IEnumerator ChangeDialogue() {
+    internal IEnumerator AwareDialogue() {
 
         _dialogueUI.SetActive(true);
 

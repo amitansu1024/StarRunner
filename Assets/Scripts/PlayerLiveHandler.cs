@@ -20,9 +20,11 @@ public class PlayerLiveHandler : MonoBehaviour
         if (_lives == 0) {
             MenuHandler.Instance.GameOver();
         }
-        else if (_scores == 5) 
+
+        if (_scores == 5) {
             MenuHandler.Instance.GameOver();
             DialogueManager.Instance.YouWinDialogue();
+        }
     }
 
     void OnTriggerEnter(Collider collider) {
@@ -30,6 +32,6 @@ public class PlayerLiveHandler : MonoBehaviour
             _livesText.SetText("Lives : " + --_lives);
         }
         else if (collider.gameObject.tag == "Score") 
-            _scoreText.SetText("Score : " + --_scores);
+            _scoreText.SetText("Score : " + ++_scores);
     }
 }

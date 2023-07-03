@@ -27,6 +27,9 @@ public class MenuHandler : MonoBehaviour
         _exitGameOverButton.onClick.AddListener(Exit);
     }
 
+    void Update() {
+    }
+
     void Pause() {
         Time.timeScale = 0;
 
@@ -42,8 +45,10 @@ public class MenuHandler : MonoBehaviour
     }
 
     void Restart() {
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
         Time.timeScale = 1;
+
+        _gameOverUI.SetActive(false);
+        SceneManager.LoadScene(2);
     }
 
     void Exit() {

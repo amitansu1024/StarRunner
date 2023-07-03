@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyBehaviourHandler : MonoBehaviour
+public class ScoreSpaceShipAIHandler : MonoBehaviour
 {
     [SerializeField] private GameObject _playerShip;
     [SerializeField] private GameObject _laser;
     [SerializeField] private float _laserSpeed;
     [SerializeField] private float _awareDistance;
     [SerializeField] private float _minimumDistanceFromPlayerShip;
-    [SerializeField] private float _enemySpeed;
+    [SerializeField] private float shipSpeed;
     [SerializeField] private bool _aware;
     private float _timer;
     private Rigidbody _rigidBody;
@@ -22,13 +22,13 @@ public class EnemyBehaviourHandler : MonoBehaviour
         _laserSpeed = 5.0f;
         _aware = false;
         _awareDistance = 40.0f;
-        _minimumDistanceFromPlayerShip = 10.0f;
-        _enemySpeed = 3.0f;
+        _minimumDistanceFromPlayerShip = 80.0f;
+        shipSpeed = 5.0f;
     }
     void FixedUpdate() {
 
         // become aware if the player is at a certain distance
-        if (Vector3.Distance(_playerShip.transform.position, transform.position) < _awareDistance)  {
+        if (Vector3.Distance(_playerShip.transform.position, transform.position) < _awareDistance && !_aware)  {
             _aware = true;
             DialogueManager.Instance.WarnPlayerDialogue();
         }
@@ -38,6 +38,7 @@ public class EnemyBehaviourHandler : MonoBehaviour
             MoveAway();
         }
 
+        // avoid Asteroid wherever possible
         if (Physics.Raycast(transform.position, -transform.forward, out _raycast, 15)) {
             if (_raycast.collider.gameObject.CompareTag("Asteroid")) {
                 _rigidBody.velocity = transform.right * 5.0f;
@@ -50,7 +51,7 @@ public class EnemyBehaviourHandler : MonoBehaviour
         if (Vector3.Distance(_playerShip.transform.position, transform.position) < _minimumDistanceFromPlayerShip + 2.0f) {
             transform.position = Vector3.MoveTowards(transform.position, 
                                                     _playerShip.transform.position,
-                                                    -_enemySpeed * Time.deltaTime);
+                                                    -shipSpeed * Time.deltaTime);
         }
 
     }

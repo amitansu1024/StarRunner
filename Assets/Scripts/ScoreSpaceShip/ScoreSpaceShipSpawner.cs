@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawnHandler : MonoBehaviour
+public class ScoreSpaceShipSpawner : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private GameObject _enemySpaceship;

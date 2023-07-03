@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 8154266304701738187}
   - component: {fileID: 7403924045665485777}
   m_Layer: 0
-  m_Name: EnemyContainer
-  m_TagString: Untagged
+  m_Name: ScoreContainer
+  m_TagString: Score
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,9 +68,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f100eeda2d3040e468d2ae8111ffc5bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lives: 0
-  _blastPrefab: {fileID: 3346285293144507383, guid: d665072d8d4ce4140b5981d6b3630db5,
-    type: 3}
 --- !u!65 &8154266304701738184
 BoxCollider:
   m_ObjectHideFlags: 0
