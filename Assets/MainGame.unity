@@ -1997,7 +1997,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2}
+  m_Size: {x: 3, y: 3, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &963194231
 Rigidbody:
@@ -2917,7 +2917,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1362354729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3459,7 +3459,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.25955856, g: 0.31044284, b: 0.4339623, a: 1}
-  m_Intensity: 45
+  m_Intensity: 55
   m_Range: 1000
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -3893,7 +3893,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 15
+  m_Intensity: 20
   m_Range: 1000
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -4255,17 +4255,17 @@ PrefabInstance:
     - target: {fileID: 5690933691209944869, guid: 25c559e90951e044dbaee2447bcb8a1b,
         type: 3}
       propertyPath: m_Size.x
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5690933691209944869, guid: 25c559e90951e044dbaee2447bcb8a1b,
         type: 3}
       propertyPath: m_Size.y
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5690933691209944869, guid: 25c559e90951e044dbaee2447bcb8a1b,
         type: 3}
       propertyPath: m_Size.z
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5690933691209944869, guid: 25c559e90951e044dbaee2447bcb8a1b,
         type: 3}

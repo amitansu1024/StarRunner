@@ -21,9 +21,9 @@ public class ScoreSpaceShipAIHandler : MonoBehaviour
         _playerShip = GameObject.Find("Main Camera");
         _laserSpeed = 5.0f;
         _aware = false;
-        _awareDistance = 40.0f;
-        _minimumDistanceFromPlayerShip = 80.0f;
-        shipSpeed = 4.0f;
+        _awareDistance = 30.0f;
+        _minimumDistanceFromPlayerShip = 40.0f;
+        shipSpeed = 5.0f;
     }
     void FixedUpdate() {
 
@@ -48,7 +48,7 @@ public class ScoreSpaceShipAIHandler : MonoBehaviour
     } 
     void MoveAway() {
         LootAtYouAnimation();
-        if (Vector3.Distance(_playerShip.transform.position, transform.position) > _minimumDistanceFromPlayerShip + 30.0f)
+        if (Vector3.Distance(_playerShip.transform.position, transform.position) > _minimumDistanceFromPlayerShip + 20.0f)
             transform.position = Vector3.MoveTowards(transform.position, 
                                                     _playerShip.transform.position,
                                                     -shipSpeed * Time.deltaTime);

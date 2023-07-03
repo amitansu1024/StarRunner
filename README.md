@@ -2,12 +2,15 @@
 
 This is a casual game where you wander through lustrous and beautiful space to find other spaceships, the game is from the perspective of the First Person Camera. So, you should see what the camera sees without any obstruction and control you ship likewise. 
 
+You can play the game here https://amitansu1024.itch.io/starrunner
 ## Environment
 
 ### SkyBox / Distant Space Screen
+![Ship image](res/Nebula%20Space_up.png)
 The far space is filled with green nebula clouds and distant small starts which sets the vibe of the deep space, this pattern is non-repeating so, everywhere you see you will have some different views.
 
 ### Asteroids
+![Ship image](res/Asteroids.png)
 The asteroids are procedurally generated for every playthrough meaning their position, shape and size would be different each time you play the game. The player has to navigate through this cluster of asteroids while looking for other spaceships.
 
 The asteroids are constantly rotating and also have collision to them, this means when the player will collide with them they will lose health. 
@@ -29,6 +32,7 @@ The player has 5 lives which decrease by the collision with asteroids.
 ## Other Spaceship
 ### 3D Model 
 The other spaceship which the player has to collect in order to score is a blue spaceship.
+![Ship image](res/otherSpaceship.png)
 ### AI behaviour
 The ship is idle at start, but will become aware of the player ship if it comes too close. Then it will start to avoid it. 
 
